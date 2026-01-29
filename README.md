@@ -168,7 +168,7 @@ This guarantees an optimal solution for minimal input sizes.
 
 The bonus part implements a checker program that validates whether a given sequence of operations correctly sorts the stack.
 
-### 🧠 How It Works
+🧠 How It Works
 
 - The checker receives the initial stack as arguments
 - It reads instructions from standard input
@@ -184,7 +184,7 @@ The checker supports all mandatory operations:
 
 Any invalid instruction triggers an immediate error.
 
-### ▶️ Usage Example
+▶️ Usage Example
 
 ```bash
 ARG="3 2 1"; ./push_swap $ARG | ./checker $ARG
@@ -216,7 +216,7 @@ make fclean	# Remove object files and the programs
 make re		# Recompile everything
 ```
 
-### ▶️ Usage
+▶️ Usage
 
 ```bash
 git clone git@github.com:zakariatalbii/42_push_swap.git
@@ -295,4 +295,4 @@ On error, the program exits immediately.
 
 ## 📜 License
 
-This project is part of the 42 School curriculum.
+This project is part of the 42 School cursus.
