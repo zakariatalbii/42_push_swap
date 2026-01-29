@@ -1,41 +1,54 @@
-MSRC = push_swap.c ft_stack.c ft_inputs.c ft_split.c ft_clear.c s_sort.c s_circo.c ft_atoi.c ft_strlen.c s_get_it.c s_sinfo1.c s_sinfo2.c	\
-		op_swap.c  op_push.c s_rotate_it.c op_reverse_rotate.c op_rotate.c
+SRC_M = src/push_swap.c src/ft_inputs/ft_inputs.c src/ft_inputs/ft_clear_inputs.c \
+		src/ft_stack/ft_stack.c src/ft_stack/ft_clear_stack.c src/ft_sort/ft_sort.c \
+		src/ft_sort/ft_circo.c src/ft_sort/ft_order_three.c src/ft_sort/ft_indexer.c \
+		src/ft_sort/ft_target.c src/ft_sort/ft_mvs.c src/ft_sort/ft_get.c src/ft_sort/ft_rotate_it.c \
+		src/utils/ft_split.c src/utils/ft_atoi.c src/utils/ft_atol.c src/utils/ft_strlen.c \
+		src/utils/ft_iserror.c src/operations/push.c src/operations/swap.c \
+		src/operations/rotate.c src/operations/reverse_rotate.c
 
-BSRC = checker_bonus.c ch_ft_stack_bonus.c ch_ft_inputs_bonus.c ch_ft_split_bonus.c ch_ft_clear_bonus.c ch_circo_bonus.c ch_utils_bonus.c	\
-		ch_op_swap_bonus.c ch_op_push_bonus.c ch_op_rotate_bonus.c ch_op_reverse_rotate_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.c
+OBJ_M = $(SRC_M:.c=.o)
 
-MOBJ =	$(MSRC:.c=.o)
+SRC_B = bonus/src/checker_bonus.c bonus/src/ft_inputs/ft_inputs_bonus.c \
+		bonus/src/ft_inputs/ft_clear_inputs_bonus.c bonus/src/ft_stack/ft_stack_bonus.c \
+		bonus/src/ft_stack/ft_clear_stack_bonus.c bonus/src/circo/ft_circo_bonus.c \
+		bonus/src/circo/ft_get_bonus.c bonus/src/utils/ft_split_bonus.c \
+		bonus/src/utils/ft_atoi_bonus.c bonus/src/utils/ft_atol_bonus.c \
+		bonus/src/utils/ft_strcmp_bonus.c bonus/src/utils/ft_strlen_bonus.c \
+		bonus/src/utils/ft_iserror_bonus.c bonus/src/operations/push_bonus.c \
+		bonus/src/operations/swap_bonus.c bonus/src/operations/rotate_bonus.c \
+		bonus/src/operations/reverse_rotate_bonus.c bonus/src/gnl/get_next_line_bonus.c \
+		bonus/src/gnl/get_next_line_utils_bonus.c
 
-BOBJ =	$(BSRC:.c=.o)
+OBJ_B = $(SRC_B:.c=.o)
 
-NAME =	push_swap
+NAME = push_swap
 
-BNAME =	checker
+NAME_B = checker
 
-CC =	cc -Wall -Wextra -Werror
+CC = cc -Wall -Wextra -Werror
 
-RM =	rm -f
+RM = rm -f
 
-%.o: %.c push_swap.h
-	$(CC) -c $< -o $@
+%_bonus.o: %_bonus.c bonus/include/checker_bonus.h bonus/include/get_next_line_bonus.h
+	$(CC) -c $< -Ibonus/include -o $@
 
-%_bonus.o: %_bonus.c checker_bonus.h get_next_line_bonus.h
-	$(CC) -c $< -o $@
-
-$(NAME): $(MOBJ)
-	$(CC) $(MOBJ) -o $(NAME)
-
-$(BNAME): $(BOBJ)
-	$(CC) $(BOBJ) -o $(BNAME)
+%.o: %.c include/push_swap.h
+	$(CC) -c $< -Iinclude -o $@
 
 all: $(NAME)
 
-bonus: $(BNAME)
+$(NAME): $(OBJ_M)
+	$(CC) $(OBJ_M) -o $(NAME)
+
+bonus: $(NAME_B)
+
+$(NAME_B): $(OBJ_B)
+	$(CC) $(OBJ_B) -o $(NAME_B)
 
 clean:
-	$(RM) $(MOBJ) $(BOBJ)
+	$(RM) $(OBJ_M) $(OBJ_B)
 
 fclean: clean
-	$(RM) $(NAME) $(BNAME)
+	$(RM) $(NAME) $(NAME_B)
 
 re: fclean all bonus
