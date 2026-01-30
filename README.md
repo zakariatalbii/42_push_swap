@@ -281,7 +281,7 @@ On error, the program exits immediately.
 - **src/** - push_swap source files
 - **include/** - push_swap header file
 - **bonus/** - Bonus (checker) implementation
-- **checker/** - The given checker (for linux/Mac)
+- **42_checker/** - The given checker (for linux/Mac)
 - **en.subject.pdf** - Project subject
 
 ---
